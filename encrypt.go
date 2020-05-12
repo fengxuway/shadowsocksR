@@ -10,13 +10,12 @@ import (
 	"encoding/binary"
 	"errors"
 
-	"github.com/sun8911879/shadowsocksR/tools"
-	"github.com/sun8911879/shadowsocksR/tools/leakybuf"
-
-	"github.com/Yawning/chacha20"
 	"github.com/dgryski/go-camellia"
 	"github.com/dgryski/go-idea"
 	"github.com/dgryski/go-rc2"
+	"github.com/fengxuway/chacha20"
+	"github.com/sun8911879/shadowsocksR/tools"
+	"github.com/sun8911879/shadowsocksR/tools/leakybuf"
 	"golang.org/x/crypto/blowfish"
 	"golang.org/x/crypto/cast5"
 	"golang.org/x/crypto/salsa20/salsa"
@@ -96,11 +95,11 @@ func newRC4MD5Stream(key, iv []byte, _ DecOrEnc) (cipher.Stream, error) {
 }
 
 func newChaCha20Stream(key, iv []byte, _ DecOrEnc) (cipher.Stream, error) {
-	return chacha20.NewCipher(key, iv)
+	return chacha20.New(key, iv)
 }
 
 func newChacha20IETFStream(key, iv []byte, _ DecOrEnc) (cipher.Stream, error) {
-	return chacha20.NewCipher(key, iv)
+	return chacha20.New(key, iv)
 }
 
 type salsaStreamCipher struct {
